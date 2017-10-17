@@ -755,7 +755,7 @@ def revcorr(stimulus, response, nsamples_before, nsamples_after=0):
     if response.size != (stimulus.shape[0] - history + 1):
         msg = ('`stimulus` must have {:#d} time points ' +
                 '(`response.size` + `nsamples_before` + `nsamples_after`)')
-        raise ValueError(msg.format(response.size + history + 1))
+        raise ValueError(msg.format(response.size + history - 1))
 
     slices = slicestim(stimulus, nsamples_before, nsamples_after)
     recovered = np.einsum('tx,t->x', flat2d(slices), response).reshape(slices.shape[1:])
